@@ -29,6 +29,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        nome = (EditText) findViewById(R.id.editTextNome);
+        telefone = (EditText) findViewById(R.id.editTextTelefone);
+        email = (EditText) findViewById(R.id.editTextEmail);
+        listaEmail = (CheckBox) findViewById(R.id.listaEmail);
+        sexo = (RadioButton) findViewById(R.id.idFeminino);
+        cidade = (EditText) findViewById(R.id.editTextCidade);
         uf = (Spinner) findViewById(R.id.spinnerUF);
 
         String[] itens = new String[]{"AC","AL","AP","AM","BA","CE","ES","GO","MA","MT","MS","MG","PA","PB","PR","PE","PI","RJ","RN","RS","RO","RR", "SC","SP","SE","TO","DF"};
@@ -40,21 +46,27 @@ public class MainActivity extends AppCompatActivity {
         btnSalvar = (Button) findViewById(R.id.btnSalvar);
 
         btnLimpar = (Button) findViewById(R.id.btnLimpar);
-        
+
+        btnLimpar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                nome.setText("");
+                telefone.setText("");
+                email.setText("");
+                listaEmail.setChecked(false);
+                sexo.setChecked(false);
+                cidade.setText("");
+                uf.setSelection(0);
+            }
+        });
+
         btnSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
 
             public void onClick(View view) {
-                nome = (EditText) findViewById(R.id.editTextNome);
                 String resultado = "Nome: "+nome.getText().toString();
-
-                telefone = (EditText) findViewById(R.id.editTextTelefone);
                 resultado += "\nTelefone: " + telefone.getText().toString();
-
-                email = (EditText) findViewById(R.id.editTextEmail);
                 resultado += "\nEmail: " + email.getText().toString();
-
-                listaEmail = (CheckBox) findViewById(R.id.listaEmail);
 
                 if(listaEmail.isChecked()){
                     resultado += "\nIngressar na lista de emails!";
@@ -62,21 +74,14 @@ public class MainActivity extends AppCompatActivity {
                     resultado += "\nNão ingressar na lista de emails!";
                 }
 
-                sexo = (RadioButton) findViewById(R.id.idFeminino);
-
                 if(!sexo.isChecked()){
                     sexo = (RadioButton) findViewById(R.id.idMasculino);
                 }
 
                 resultado += "\nSexo: "+sexo.getText().toString();
-
-                cidade = (EditText) findViewById(R.id.editTextCidade);
-
                 resultado += "\nCidade: "+cidade.getText().toString();
-
                 int posicao = uf.getSelectedItemPosition();
                 String estado = uf.getItemAtPosition(posicao).toString();
-
                 resultado += "\nUF: "+estado;
 
                 Toast.makeText(getApplicationContext() , resultado, Toast.LENGTH_SHORT).show();

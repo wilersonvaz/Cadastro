@@ -89,8 +89,7 @@
         android:id="@+id/editTextCidade"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName" />
+        android:ems="10" />
 
     <TextView
         android:id="@+id/textView6"
@@ -140,5 +139,17 @@
         android:ems="10"
         android:inputType="textEmailAddress" />
 
+=======
+    tools:context=".MainActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:textAlignment="center"
+        android:textColor="#ffffff"
+        android:textSize="20dp"
+        android:background="@color/colorPrimary"
+        android:text="Cadastro" />
+>>>>>>> origin/master
 
 </LinearLayout>
